@@ -273,7 +273,7 @@ def load_weights(
                 file_name = pytorch_index[item.key] if pytorch_index is not None else pytorch_filename
                 file_path = os.path.join(model_path, file_name)
                 if file_path not in opened_files:
-                    opened_files[file_path] = torch.load(file_path, map_location="cuda", mmap=True)
+                    opened_files[file_path] = torch.load(file_path, map_location="cuda", mmap=True, weights_only=True)
                 file = opened_files[file_path]
                 return file[item.key].to(item.dtype)
             getter = weight_getter_real
